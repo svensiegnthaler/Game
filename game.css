@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 /*---------------------------------------------------
-------------grundgerüst js
+------------grundgerüst 
 ----------------------------------------------------*/
 * {
   margin: 0;
@@ -14,6 +14,9 @@ body {
   flex-direction: column;
   align-items: center;
 }
+/*---------------------------------------------------
+------------Spielelemente Kübban run
+----------------------------------------------------*/
 .punkte {
   margin: auto;
   font-family: "Press Start 2P", cursive;
@@ -42,36 +45,92 @@ body {
 }
 .player {
   position: absolute;
-  bottom: 100px;
-  background-color: red;
-  width: 50px;
-  height: 50px;
+  bottom: 0px;
+  background-image: url(dürüm.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
   right: calc(100% - 100px);
 }
-.stein {
+.hinderniss1 {
+  background-image: url("hinderniss1.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: none;
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: rgb(155, 77, 77);
+  width: 150px;
+  height: 150px;
 }
-
-.enemy1,
-.enemy2 {
+.hinderniss2 {
+  background-image: url("hinderniss2.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: none;
   position: absolute;
-  bottom: 0;
-  left: 50px;
-  background-color: blue;
-  width: 50px;
-  height: 50px;
+  width: 400px;
+  height: 250px;
 }
-#button {
+.enemy1 {
+  position: absolute;
+  bottom: 30px;
+  left: 100px;
+  background-image: url("dickerrennendermann.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: none;
+  width: 500px;
+  height: 500px;
+}
+/*---------------------------------------------------
+------------startscreen
+----------------------------------------------------*/
+h3 {
+  font-size: 70px;
+  font-family: "Press Start 2P", cursive;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 249, 249, 0.904);
+  position: absolute;
+  margin: auto;
+  z-index: 1;
+}
+button {
+  display: flex;
   margin-top: 40px;
-  align-items: flex-end;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "Press Start 2P", cursive;
   font-size: 40px;
   padding: 30px;
+  border-radius: 10px;
+}
+.einleitungstext {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: "Press Start 2P", cursive;
+  margin-top: 40px;
+  font-size: 30px;
 }
 
 /*---------------------------------------------------
-------------grundgerüst js
+------------Gameoverscreen
 ----------------------------------------------------*/
+a {
+  text-decoration: none;
+  color: black;
+}
+.gameover {
+  margin-top: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,27 +1,36 @@
 var spieler = document.querySelector(".player");
-spieler.style.left = "25%";
-spieler.style.bottom = "0px";
-var timer = new Timer(30);
+spieler.style.left = "1000px";
+spieler.style.bottom = "10px";
+var timer = new Timer(20);
+var timer2 = new Timer(100);
+var timer3 = new Timer(200);
 
 var jump = false;
-// if leertaste jump= true
-const startBtn = document.getElementById("startBtn");
+
+var play = document.querySelector(".button");
 var score = 0;
 var punkteAnzeige = document.querySelector(".punkte");
 var gegner1 = document.querySelector(".enemy1");
-var gegner2 = document.querySelector(".enemy2");
 var spielfeld = document.querySelector(".city");
 var backgroundPosition = 0;
 
-//jumpanimation
-function jumpAnimation() {}
+gegner1.style.backgroundImage = "url(dickerrennendermann.gif)";
 
 function loop() {
+  //button funktionen das er verschwindet nach start
+  play.style.display = "none";
   //stein hinderniss
-  if (timer.ready()) {
+  if (timer2.ready()) {
     var h = document.createElement("div");
-    h.classList.add("stein");
-    h.style.bottom = "0px";
+    h.classList.add("hinderniss1");
+    h.style.bottom = "10px";
+    h.style.right = "-10px";
+    spielfeld.appendChild(h);
+  }
+  if (timer3.ready()) {
+    var h = document.createElement("div");
+    h.classList.add("hinderniss2");
+    h.style.bottom = "600px";
     h.style.right = "-10px";
     spielfeld.appendChild(h);
   }
@@ -31,14 +40,16 @@ function loop() {
   spielfeld.style.backgroundPosition = `-${backgroundPosition}px 0`;
 
   //bewegung game und tastatur
-  if (parseInt(spieler.style.bottom) > 150) {
-    spieler.style.bottom = parseInt(spieler.style.bottom) - 5.5 + "px";
+  if (parseInt(spieler.style.bottom) > 5) {
+    spieler.style.bottom = parseInt(spieler.style.bottom) - 10 + "px";
   }
-  if (mouseClick()) {
+  if (mouseClick() && parseInt(spieler.style.bottom) < 350) {
     jump = true;
-    spieler.style.bottom = parseInt(spieler.style.bottom) + 150 + "px";
+    spieler.style.bottom = parseInt(spieler.style.bottom) + 25 + "px";
+  } else if (jump) {
+    spieler.style.bottom = parseInt(spieler.style.bottom) + 25 + "px";
   }
-  if (parseInt(spieler.style.bottom) > 50) {
+  if (parseInt(spieler.style.bottom) > 450) {
     jump = false;
   }
 
@@ -49,20 +60,33 @@ function loop() {
   }
 
   //hindernisse
-  var steine = document.querySelectorAll(".stein");
-  for (var stein of steine) {
-    stein.style.right = parseInt(stein.style.right) + 10 + "px";
-    if (parseInt(stein.style.right) > 2000) {
-      stein.parentNode.removeChild(stein);
+  var hindernisse1 = document.querySelectorAll(".hinderniss1");
+  for (var hinderniss1 of hindernisse1) {
+    hinderniss1.style.right = parseInt(hinderniss1.style.right) + 20 + "px";
+    if (parseInt(hinderniss1.style.left) < 0) {
+      hinderniss1.parentNode.removeChild(hinderniss1);
     }
-
-    if (anyCollision(spieler, steine)) {
-      alert("Game over!");
-      return;
+  }
+  var hindernisse2 = document.querySelectorAll(".hinderniss2");
+  for (var hinderniss2 of hindernisse2) {
+    hinderniss2.style.right = parseInt(hinderniss2.style.right) + 70 + "px";
+    if (parseInt(hinderniss2.style.left) < 0) {
+      hinderniss2.parentNode.removeChild(hinderniss2);
     }
+  }
+  //collision gameoversite , wenn man stribt
+  if (anyCollision(spieler, hindernisse1)) {
+    localStorage.scoreEnd = score;
+    location.replace("gameover.html");
+    return;
+  }
+  if (anyCollision(spieler, hindernisse2)) {
+    localStorage.scoreEnd = score;
+    location.replace("gameover.html");
+    return;
   }
 
   window.requestAnimationFrame(loop);
 }
 
-window.requestAnimationFrame(loop);
+play.addEventListener("click", loop);
