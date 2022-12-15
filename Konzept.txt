@@ -1,0 +1,21 @@
+Jump and Run (KüBBan Run)
+
+Spielprinzip
+	Als Dönerbox for Hungrigem Dicken Mann wegrennen
+
+
+Inhalt
+	Spieler: Dönerbox
+	Gegner: Dicker Mann
+	Hindernisse: Fliegender Männer und Hungrige gesichter
+	
+
+Stil
+	Comic Still, welcher nicht so realistisch gehalten wird
+
+Externe Ressourcen
+	
+	Kau geräusch(wenngefressen) Youtube
+
+Steuerung
+	Leertaste oder w und s pfeil oben/unten
